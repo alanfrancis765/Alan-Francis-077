@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer & User Login</title>
+    <link rel="stylesheet" href="styles11.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <div class="role-selection">
+            <button class="role-button user-button" onclick="selectRole('user')">User</button>
+            <button class="role-button seller-button" onclick="selectRole('seller')">Seller</button>
+        </div>
+        <form id="loginForm">
+            <input type="hidden" id="role" name="role" value="user">
+            <div class="form-group">
+                <label id="idLabel" for="userID">Email:</label>
+                <input type="text" id="userID" name="userID" placeholder="Enter your Email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter password" required>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+        <div class="options">
+            <p>Don't have an account? <a href="/register">Sign up</a></p>
+        </div>
+    </div>
+    <script>
+        function selectRole(role) {
+            document.getElementById('role').value = role;
+            let idLabel = document.getElementById('idLabel');
+            let userID = document.getElementById('userID');
+            let password = document.getElementById('password');
+            if (role === 'user') {
+                idLabel.textContent = "Email:";
+                userID.placeholder = "Enter your Email";
+                userID.value = "user@example.com";
+                password.placeholder = "6-digit password";
+                password.value = "123456";
+                password.setAttribute('minlength', '6');
+                password.setAttribute('maxlength', '6');
+            } else {
+                idLabel.textContent = "Trade ID:";
+                userID.placeholder = "Enter your Trade ID";
+                userID.value = "T123456";
+                password.placeholder = "8-digit password";
+                password.value = "12345678";
+                password.setAttribute('minlength', '8');
+                password.setAttribute('maxlength', '8');
+            }
+            document.querySelector('.user-button').classList.toggle('active', role === 'user');
+            document.querySelector('.seller-button').classList.toggle('active', role === 'seller');
+        }
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let role = document.getElementById('role').value;
+            if (role === 'user') {
+                window.location.href = "user_dashboard.html";
+            } else {
+                window.location.href = "seller_dashboard.html";
+            }
+        });
+        selectRole('user');
+    </script>
+</body>
+</html>
