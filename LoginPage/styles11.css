@@ -1,0 +1,162 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+    background: url('https://cdn.pixabay.com/photo/2020/07/13/08/15/rye-5399962_1280.jpg') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Gradient Background Animation */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Zoom-out Animation */
+@keyframes zoomOut {
+    from { transform: scale(1.1); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Login Container */
+.login-container {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    width: 350px;
+    animation: zoomOut 0.6s ease-in-out;
+}
+
+h1 {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 16px;
+    outline: none;
+    text-align: center;
+    transition: 0.3s ease-in-out;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+input:focus {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+}
+
+/* Role Selection Buttons */
+.role-selection {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.role-button {
+    width: 45%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    border-radius: 30px;
+    color: white;
+    opacity: 0.6;
+}
+
+/* User Button */
+.user-button {
+    background: linear-gradient(45deg, #4CAF50, #2E8B57);
+}
+
+/* Seller Button */
+.seller-button {
+    background: linear-gradient(45deg, #FFA500, #FF8C00);
+}
+
+/* Active State for Selected Role */
+.role-button.active {
+    opacity: 1;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover Effect */
+.role-button:hover {
+    opacity: 1;
+    transform: scale(1.08);
+}
+
+/* Login Button */
+.login-btn {
+    background: linear-gradient(45deg, #FF6347, #FF4500);
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+    color: white;
+    border: none;
+    width: 100%;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Hover Effect */
+.login-btn:hover {
+    transform: scale(1.08);
+    background: linear-gradient(45deg, #FF4500, #FF6347);
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Options */
+.options {
+    margin-top: 10px;
+    color: white;
+    font-size: 14px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
