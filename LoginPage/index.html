@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer & User Login</title>
+    <link rel="stylesheet" href="styles11.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <h1>Login</h1>
+
+        <!-- User & Seller Buttons -->
+        <div class="role-selection">
+            <button class="role-button user-button" onclick="selectRole('user')">User</button>
+            <button class="role-button seller-button" onclick="selectRole('seller')">Seller</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm">
+            <input type="hidden" id="role" name="role" value="user">
+            
+            <div class="form-group">
+                <label id="idLabel" for="userID">Email:</label>
+                <input type="text" id="userID" name="userID" placeholder="Enter your Email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter password" required>
+            </div>
+
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <!-- Signup Link -->
+        <div class="options">
+            <p>Don't have an account? <a href="/register">Sign up</a></p>
+        </div>
+    </div>
+
+    <script>
+        function selectRole(role) {
+            // Set the hidden role field
+            document.getElementById('role').value = role;
+
+            // Get elements
+            let idLabel = document.getElementById('idLabel');
+            let userID = document.getElementById('userID');
+            let password = document.getElementById('password');
+
+            if (role === 'user') {
+                idLabel.textContent = "Email:";
+                userID.placeholder = "Enter your Email";
+                userID.value = "user@example.com";  // Default Email
+                password.placeholder = "6-digit password";
+                password.value = "123456";  // Default Password
+                password.setAttribute('minlength', '6');
+                password.setAttribute('maxlength', '6');
+            } else {
+                idLabel.textContent = "Trade ID:";
+                userID.placeholder = "Enter your Trade ID";
+                userID.value = "T123456";  // Default Trade ID
+                password.placeholder = "8-digit password";
+                password.value = "12345678";  // Default Password
+                password.setAttribute('minlength', '8');
+                password.setAttribute('maxlength', '8');
+            }
+
+            // Toggle button active state
+            document.querySelector('.user-button').classList.toggle('active', role === 'user');
+            document.querySelector('.seller-button').classList.toggle('active', role === 'seller');
+        }
+
+        // Form submission logic
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent default form submission
+
+            let role = document.getElementById('role').value;
+            if (role === 'user') {
+                window.location.href = "user_dashboard.html";  // Redirect to User Page
+            } else {
+                window.location.href = "seller_dashboard.html";  // Redirect to Seller Page
+            }
+        });
+
+        // Set default role to user
+        selectRole('user');
+    </script>
+
+</body>
+</html>
