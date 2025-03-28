@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+// it's an optimal code
 int main() {
     int ref[25], fr[10], n, i, k, f, fi = 0, faults = 0, miss;
 
