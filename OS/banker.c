@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+// it's an optimal code
 int main() {
     int n, m, i, j, d = 0;
     int avl[30], max[30][30], alloc[30][30];
