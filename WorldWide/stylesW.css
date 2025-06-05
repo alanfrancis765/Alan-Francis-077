@@ -1,0 +1,275 @@
+/* === Reset & Base === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0d1524, #30325d, #374151);
+  color: white;
+  min-height: 100vh;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* === TOP BAR === */
+.top-bar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 10;
+  background: transparent;
+}
+
+.logo-container {
+  padding-right: 1rem;
+}
+
+.top-logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* === Navbar === */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(122, 168, 237, 0.32);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.hamburger {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  color: #1f2937;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 0.5rem;
+}
+
+.brand {
+  font-weight: bold;
+  color: #1f2937;
+  font-size: 1.25rem;
+}
+
+/* === Hero Section === */
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  animation: slideFadeIn 1s ease-out forwards;
+}
+
+p {
+  max-width: 600px;
+  font-size: 1.125rem;
+  margin: 0 auto 2rem auto;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 0.5s forwards;
+}
+
+.cta-button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  animation: scaleFadeIn 0.5s ease-out 1s forwards;
+  opacity: 0;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+  background-color: #2563eb;
+}
+
+/* === Scrollable Sections === */
+.scroll-section {
+  padding: 4rem 1rem;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
+}
+
+.scroll-section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-section img {
+  max-width: 400px;
+  margin-top: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* === Data Section === */
+.data-section {
+  margin: 2rem auto;
+  max-width: 700px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.data-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #60a5fa;
+}
+
+.data-item {
+  text-align: left;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.data-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+canvas {
+  margin-top: 2rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+/* === Mobile Menu === */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  background-color: #1f2937;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1500;
+  padding-top: 60px;
+  box-sizing: border-box;
+}
+
+.mobile-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-menu li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 1rem 1.5rem;
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease;
+}
+
+.mobile-menu a:hover {
+  background-color: #3b82f6;
+}
+
+/* Show menu when toggled */
+.mobile-menu.show {
+  transform: translateX(0);
+}
+
+/* === Overlay === */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 150;
+  transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+.hamburger.force-show {
+  display: block !important;
+}
+/* === Hide hamburger + menu on wider screens === */
+@media (min-width: 768px) {
+  /* .hamburger { 
+    display: none;
+   } */
+
+  .mobile-menu {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .overlay {
+    display: none;
+  }
+}
+
+/* === Animations === */
+@keyframes slideFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleFadeIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
