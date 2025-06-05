@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="stylesW.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ✅ NAVBAR -->
+  <header class="navbar">
+    <div class="navbar-left">
+      <div class="hamburger" id="hamburgerBtn">&#9776;</div>
+      <img src="logo.jpg" alt="Worldwide Logo" class="logo" />
+      <span class="brand">Worldwide</span>
+    </div>
+  </header>
+
+  <!-- ✅ Mobile Slide-In Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- ✅ Overlay for mobile menu -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ✅ DASHBOARD CONTENT -->
+  <main class="dashboard-content">
+    <h1>Welcome to WW Financial Analytics</h1>
+    <p>Here’s where we’ll visualize all that juicy financial data.</p>
+
+    <!-- Chart canvas -->
+    <canvas id="incomeChart" width="800" height="400"></canvas>
+
+    <!-- JSON data output -->
+    <div id="data-container"></div>
+  </main>
+  <div class = "footer">
+    <p>@𝕬𝖑𝖆𝖓𝕱𝖗𝖆𝖓𝖈𝖎𝖘</p>
+  <!-- ✅ Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- ✅ Your custom dashboard script -->
+  <script src="script01.js"></script>
+
+  <!-- ✅ Mobile menu toggle script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const hamburger = document.querySelector('.hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const overlay = document.getElementById('overlay');
+
+      hamburger.addEventListener('click', () => {
+        mobileMenu.classList.toggle('show');
+        overlay.classList.toggle('active');
+      });
+
+      overlay.addEventListener('click', () => {
+        mobileMenu.classList.remove('show');
+        overlay.classList.remove('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
