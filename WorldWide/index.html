@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Financial Pulse of the Nation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="stylesW.css" />
+</head>
+<body>
+<header class="navbar">
+  <div class="navbar-left">
+    <div class="hamburger force-show" id="hamburgerBtn">&#9776;</div>
+    <img src="logo.jpg" alt="Worldwide Logo" class="logo" />
+    <span class="brand">Worldwide</span>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#homeSection">Home</a></li>
+      <li><a href="#featuresSection">Features</a></li>
+      <li><a href="#aboutSection">About</a></li>
+      <li><a href="#contactSection">Contact</a></li>
+    </ul>
+  </nav>
+
+<div id="overlay" class="overlay"></div>
+
+  <h1>Financial Pulse of the Nation</h1>
+  <p>
+    Dive into the dynamic world of New Zealand’s industry statistics.
+    Track income, expenditure, and financial performance across sectors,
+    all in one interactive dashboard.
+  </p>
+  <a href="dashboard.html" class="cta-button">Explore Dashboard</a>
+  
+  <section class="scroll-section">
+  <div class="content">
+    <h2>Sector Insights</h2>
+    <p>Technology is driving growth with AI and cybersecurity,
+         while healthcare benefits from biotech innovation and aging populations.
+         Renewable energy is expanding due to global decarbonization efforts,
+             and fintech continues to disrupt traditional banking.</p>
+    <img src="image1.png" alt="Industry Growth">
+  </div>
+</section>
+
+<section class="scroll-section">
+  <div class="content">
+    <h2>Spending Trends</h2>
+    <p>Consumers are shifting toward e-commerce and sustainable products, 
+        while businesses invest in automation and ESG initiatives. Governments are
+         increasing spending on infrastructure, defense, and green energy projects.</p>
+    <img src="image2.png" alt="Spending Trends">
+  </div>
+</section>
+
+<section class="scroll-section">
+  <div class="content">
+    <h2>Investment Focus</h2>
+    <p>Investors are favoring tech and green energy stocks, short-duration bonds amid 
+        rising interest rates, and alternative assets like crypto and real estate. 
+        Diversification remains key to managing risk in evolving markets..</p>
+    <img src="image3.png" alt="Investment Focus">
+  </div>
+</section>
+<section class="scroll-section">
+  <div class="content">
+    <p>Protect your assets with adequate insurance coverage and basic
+       estate planning.Consider developing additional income streams
+        through side hustles or skill-building,This keeps it practical, actionable,
+         and covers all key areas in one fluid paragraph. Let me know if you'd like 
+         any adjustments!</p>
+         <p>@𝕬𝖑𝖆𝖓𝕱𝖗𝖆𝖓𝖈𝖎𝖘</p>
+         </div>
+</section>
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, {
+    threshold: 0.15
+  });
+
+  document.querySelectorAll('.scroll-section').forEach(section => {
+    observer.observe(section);
+  });
+
+   document.addEventListener("DOMContentLoaded", () => {
+      const hamburger = document.querySelector('.hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const overlay = document.getElementById('overlay');
+
+      hamburger.addEventListener('click', () => {
+        mobileMenu.classList.toggle('show');
+        overlay.classList.toggle('active');
+      });
+
+      overlay.addEventListener('click', () => {
+        mobileMenu.classList.remove('show');
+        overlay.classList.remove('active');
+      });
+    });
+</script>
+
+
+</body>
+</html>
