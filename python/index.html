@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CLASS ECHO</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Top bar -->
+  <header class="topbar">
+    <button id="hamburgerBtn" class="hamburger-btn" aria-label="Menu">
+      <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+        <path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 2a8 8 0 1 1-8 8 8 8 0 0 1 8-8z"/>
+        <circle cx="12" cy="12" r="4" fill="currentColor"/>
+      </svg>
+    </button>
+    <h1 class="logo">🎧 CLASS ECHO</h1>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Features</a>
+      <a href="#">About</a>
+    </nav>
+    <div class="action-buttons">
+      <button class="btn btn-outline">Login</button>
+      <button class="btn btn-primary">Get Started</button>
+    </div>
+  </header>
+
+  <!-- Slide panel -->
+  <aside id="sidePanel" class="side-panel">
+    <nav>
+      <button id="newClassBtn" class="panel-btn" title="New Session">
+        <svg viewBox="0 0 24 24" width="22" height="22">
+          <path fill="currentColor" d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+        </svg>
+        <span>New Session</span>
+      </button>
+      <button id="historyBtn" class="panel-btn" title="History">
+        <svg viewBox="0 0 24 24" width="22" height="22">
+          <path fill="currentColor"
+            d="M13 3a9 9 0 0 1 9 9h-2a7 7 0 1 0-2.05 4.95l1.42 1.42A9 9 0 1 1 13 3zm-1 5h2v6l5.25 3.15-1 1.63L12 14V8z"/>
+        </svg>
+        <span>History</span>
+      </button>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <main class="content">
+    <h1 class="title">CLASS ECHO</h1>
+    <p class="subtitle">LISTEN · LEARN · REMEMBER</p>
+
+    <!-- Transcription area -->
+    <div class="transcription-box" aria-live="polite">
+      <textarea id="transcriptArea" placeholder="Live transcription will appear here..."></textarea>
+
+      <div class="input-controls">
+        <button id="micBtn" class="mic-btn" aria-pressed="false" aria-label="Start transcription">
+          <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+            <path fill="currentColor"
+              d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 14 0h-2zM11 20h2v-2h-2v2z"/>
+          </svg>
+        </button>
+        <button class="send-btn" aria-label="Send transcription">↗️</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Floating button -->
+  <div class="fab">+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
